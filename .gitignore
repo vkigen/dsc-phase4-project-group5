@@ -5,6 +5,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Python Virtual Environments
+.virtualenv
+
+#local files (local file collector)
+zaza
+
 # C extensions
 *.so
 
@@ -171,3 +177,4 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+

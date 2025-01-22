@@ -1,0 +1,10 @@
+pandas
+numpy
+scipy
+nltk
+scikit-learn
+re
+argparse
+json
+pickle
+csv
