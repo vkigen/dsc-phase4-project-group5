@@ -18,3 +18,31 @@ To measure success, metrics like recommendation accuracy, user engagement, and s
 #### System Functionality Overview
 The job recommendation system will allow users to input their skills, work experience, job title, employment duration, and job description. Using NLP, the system will analyze this information to extract key skills and industry-specific terms, matching the user's profile against job descriptions in the dataset.
 Recommendations will be tailored based on factors like required skills, experience, location, work type, and salary, ensuring a personalized and relevant list of job opportunities. This approach streamlines the job search process, helping users identify roles aligned with their expertise and career goals.
+
+## How to run the algorithm
+# How to run the algo
+
+## Step One : Clone the repo.
+Follow the necessary steps to clone the repo.
+
+## Step Two: Install all required libraries.
+To achieve this, run the following code snippets:
+
+`python3 -m venv .virtualenv`
+To setup the virtual environment for the project.
+`source .virtualenv/bin/activate`
+This step varies depending on your operating system.
+`python3 -m pip install -r requirements.txt`
+You may need to update your pip.
+
+## Step Three: Initialize the vectorizers as follows
+`./bash/save_skills.sh ['path-to-the-csv-data-file]`
+Then:
+`./bash/save_workex.sh ['path-to-the-csv-data-file]`
+
+## Step Four: Run the algorithm to produce recommendations
+`./bash/run_skills.sh ['path-to-input-json-file(queries/skills)']`
+And:
+`./bash/run_workex.sh ['path-to-input-json-file(queries/workEx)']`
+
+Congratulations! More Coming soon...
