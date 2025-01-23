@@ -1,0 +1,188 @@
+/* General body styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #1e1e2f;
+    /* Dark background */
+    color: #f0f0f0;
+    /* Light text for readability */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Page container */
+.container {
+    width: 90%;
+    /* Adjust the width as needed */
+    max-width: 1200px;
+    /* Set a max-width for larger screens */
+    margin: 0 auto;
+    /* Center the container */
+    padding: 20px;
+    /* Add padding inside the container */
+    background: #2a2a3b;
+    /* Darker card background */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    /* Stronger shadow for depth */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Container hover effect */
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
+    /* Dark hover effect */
+}
+
+/* Heading styles */
+h1 {
+    color: #e1e1ff;
+    /* Soft vibrant color */
+    margin-bottom: 15px;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h2 {
+    color: #c4c4ff;
+    /* Slightly dimmed for subheading */
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input,
+select,
+textarea,
+button {
+    font-size: 1rem;
+}
+
+/* Input fields */
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #444;
+    /* Darker border */
+    border-radius: 6px;
+    background: #3a3a4f;
+    /* Subtle dark background */
+    color: #f0f0f0;
+    /* Light text */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #5e5eff;
+    /* Vibrant focus color */
+    outline: none;
+    box-shadow: 0 4px 10px rgba(94, 94, 255, 0.4);
+    /* Subtle glow */
+}
+
+/* Submit button */
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #5e5eff, #9a67ea);
+    /* Dark gradient */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #9a67ea, #5e5eff);
+    transform: scale(1.05);
+}
+
+/* Table styling */
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    /* Ensures the table respects the container size */
+    margin-top: 20px;
+}
+
+.results-table th,
+.results-table td {
+    padding: 12px;
+    /* Adds padding inside the table cells */
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.results-table th {
+    background-color: #f2f2f2;
+    /* Light grey for headers */
+}
+
+/* Recommendation result styling */
+pre {
+    background-color: #29293b;
+    /* Dark result box */
+    border: 1px solid #444;
+    /* Subtle border */
+    border-radius: 6px;
+    padding: 15px;
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    /* Dark shadow */
+    color: #e0e0ff;
+    /* Soft text */
+}
+
+/* Add subtle animations */
+pre,
+h2 {
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+        /* Smaller padding for smaller screens */
+    }
+
+    .results-table {
+        font-size: 12px;
+        /* Smaller text on mobile */
+    }
+}

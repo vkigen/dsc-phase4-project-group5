@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Recommendations</title>
+    {% load static %}
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" type="text/css" href="{% static 'job/css/style.css' %}" />
+
+    <!-- DataTable CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+
+    <!-- jQuery (required for DataTable) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTable JS -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Job Recommendations</h2>
+      <table id="jobRecommendationsTable" class="results-table">
+        <thead>
+          <tr>
+            <th>Job Id</th>
+            <th>Experience</th>
+            <th>Qualifications</th>
+            <th>Salary Range</th>
+            <th>Location</th>
+            <th>Country</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Work Type</th>
+            <th>Company Size</th>
+            <th>Job Posting Date</th>
+            <th>Preference</th>
+            <th>Contact Person</th>
+            <th>Contact</th>
+            <th>Job Title</th>
+            <th>Role</th>
+            <th>Job Portal</th>
+            <th>Job Description</th>
+            <th>Benefits</th>
+            <th>Skills</th>
+            <th>Responsibilities</th>
+            <th>Company</th>
+            <th>Company Profile</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if result %}
+            {% for job_id, job_info in result.items %}
+              <tr>
+                <td>{{ job_id }}</td>
+                <td>{{ job_info.Experience }}</td>
+                <td>{{ job_info.Qualifications }}</td>
+                <td>{{ job_info.Salary_Range }}</td>
+                <td>{{ job_info.location }}</td>
+                <td>{{ job_info.Country }}</td>
+                <td>{{ job_info.latitude }}</td>
+                <td>{{ job_info.longitude }}</td>
+                <td>{{ job_info.Work_Type }}</td>
+                <td>{{ job_info.Company_Size }}</td>
+                <td>{{ job_info.Job_Posting_Date }}</td>
+                <td>{{ job_info.Preference }}</td>
+                <td>{{ job_info.Contact_Person }}</td>
+                <td>{{ job_info.Contact }}</td>
+                <td>{{ job_info.Job_Title }}</td>
+                <td>{{ job_info.Role }}</td>
+                <td>{{ job_info.Job_Portal }}</td>
+                <td>{{ job_info.Job_Description }}</td>
+                <td>{{ job_info.Benefits }}</td>
+                <td>{{ job_info.skills }}</td>
+                <td>{{ job_info.Responsibilities }}</td>
+                <td>{{ job_info.Company }}</td>
+                <td>{{ job_info.Company_Profile }}</td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="23">No job data available.</td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      // Initialize the DataTable
+      $(document).ready(function () {
+        $('#jobRecommendationsTable').DataTable({
+          paging: true, // Enable pagination
+          searching: true, // Enable search functionality
+          ordering: true, // Enable column sorting
+          info: false, // Disable table information
+          scrollX: true // Enable horizontal scrolling for wide tables
+        })
+      })
+    </script>
+  </body>
+</html>

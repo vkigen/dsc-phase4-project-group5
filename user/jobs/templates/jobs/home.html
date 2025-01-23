@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Recommendation Form</title>
+    {% load static %}
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" type="text/css" href="{% static 'job/css/style.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Submit Your Preferences</h1>
+      <form method="POST" action="">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="experience">Experience:</label>
+          <input type="text" id="experience" name="experience" required />
+        </div>
+        <div class="form-group">
+          <label for="location">Preferred Location:</label>
+          <input type="text" id="location" name="location" required />
+        </div>
+        <div class="form-group">
+          <label for="skills">Skills:</label>
+          <input type="text" id="skills" name="skills" required />
+        </div>
+        <div class="form-group">
+          <label for="skills">Preferred Salary:</label>
+          <input type="number" id="skills" name="salary" min="0" required />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+
+      {% if error %}
+        <p style="color: red;">{{ error }}</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
