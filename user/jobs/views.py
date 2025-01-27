@@ -9,7 +9,8 @@ from django.views.decorators.csrf import csrf_exempt
 def send_to_recommendation_system(job_data):
     """
     Mock function to send job data to a recommendation system and get a response.
-    Replace this with actual API integration when available.
+    Needs to be integrated with the process_data function.
+
     """
     # Mock response data
     mock_response = {
