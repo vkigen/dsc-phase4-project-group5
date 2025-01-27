@@ -1,12 +1,16 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 import json
+import subprocess
+import uuid
+from django.views.decorators.csrf import csrf_exempt
 
 
 def send_to_recommendation_system(job_data):
     """
     Mock function to send job data to a recommendation system and get a response.
-    Replace this with actual API integration when available.
+    Needs to be integrated with the process_data function.
+
     """
     # Mock response data
     mock_response = {
@@ -68,3 +72,53 @@ def results(request):
     """
     result = request.session.get("result", {})  # Retrieve results from session
     return render(request, "jobs/results_table.html", {"result": result})
+
+
+def process_data(request):
+    if request.method == "POST":
+        # Step 1: Extract input data from the form
+        input_text = request.POST.get("inputText", "")
+        filter_criteria = request.POST.get("filter", "")
+
+        # Step 2: Create a JSON file with ID and input text
+        unique_id = str(uuid.uuid4())
+        input_json_path = f"/tmp/input_{unique_id}.json"
+        output_json_path = f"/tmp/output_{unique_id}.json"
+
+        input_data = {
+            "id": unique_id,
+            "inputText": input_text
+        }
+        with open(input_json_path, "w") as f:
+            json.dump(input_data, f)
+
+        try:
+            # Step 3: Call the Python script, passing the input JSON file and output location as arguments
+            result = subprocess.run(
+                ["python3", "path/to/your_script.py",
+                    input_json_path, output_json_path],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True
+            )
+
+            # Check for script errors
+            if result.returncode != 0:
+                return JsonResponse({"error": result.stderr}, status=500)
+
+            # Step 4: Read the generated JSON file
+            with open(output_json_path, "r") as f:
+                output_data = json.load(f)
+
+            # Step 5: Filter the output data based on user criteria
+            # Assuming output_data is a list of dictionaries
+            filtered_data = [
+                item for item in output_data if filter_criteria.lower() in item.get("field", "").lower()
+            ]
+
+            return JsonResponse({"filtered_data": filtered_data})
+
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+
+    return JsonResponse({"error": "Invalid request method"}, status=400)
